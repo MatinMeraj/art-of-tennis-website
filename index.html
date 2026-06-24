@@ -8,10 +8,16 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="index.html">The Art of<br><span>Tennis</span><br>Academy</a>
+    <a class="logo" href="index.html" aria-label="The Art of Tennis Academy home">
+      <span>The Art of</span>
+      <strong>Tennis</strong>
+      <span>Academy</span>
+    </a>
+
     <button class="nav-toggle" aria-label="Open navigation">☰</button>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="programs.html">Programs</a>
       <a href="team.html">Team</a>
       <a href="summer-camp.html">Summer Camp</a>
@@ -20,60 +26,108 @@
   </header>
 
   <main>
-    <section class="hero section white center">
-      <p class="eyebrow">Children • Tennis • Creativity</p>
-      <h1>Tennis + Art</h1>
-      <p class="lead">The Art of Tennis Academy focuses on developing children in a multidisciplinary environment, combining movement, teamwork, creativity, and confidence.</p>
+    <section class="hero section hero-home">
+      <div class="hero-copy">
+        <p class="kicker">Children • Tennis • Creativity</p>
+        <h1>Tennis + Art</h1>
+        <p class="lead">
+          The Art of Tennis Academy focuses on developing children in a multidisciplinary environment. We believe in the importance of mind-body development in the early stages of life to build confidence and inner strength.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="programs.html">View Programs</a>
+          <a class="btn ghost" href="summer-camp.html">Summer Camp</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="tennis-ball">+</div>
+        <div class="court-card">Tennis<br>Art<br>Yoga</div>
+      </div>
+    </section>
+
+    <section class="section facts-section white center">
+      <p class="kicker red-text">Fun Facts of Academy</p>
       <div class="stats">
-        <div><strong>150+</strong><span>Current Students</span></div>
-        <div><strong>5,000+</strong><span>Ice Creams Eaten</span></div>
-        <div><strong>16+</strong><span>Weekly Classes</span></div>
+        <article>
+          <strong>150+</strong>
+          <span>Current Students</span>
+        </article>
+        <article>
+          <strong>5,000+</strong>
+          <span>Ice Creams Eaten</span>
+        </article>
+        <article>
+          <strong>16+</strong>
+          <span>Weekly Classes</span>
+        </article>
       </div>
     </section>
 
-    <section class="section white center">
-      <h2>Our Community <span>Partners</span></h2>
-      <div class="partner-grid">
-        <div>City of Vancouver</div><div>Riley Park Hillcrest</div><div>Britannia Centre</div>
-        <div>Vancouver Parks</div><div>Champlain Heights</div><div>Killarney Centre</div>
+    <section class="section community-section white center">
+      <p class="section-label">Partners</p>
+      <h2>Our Community</h2>
+      <p class="lead small">We work with local community centres to create fun, active, and accessible tennis programs for children and families. Partner logos below are placeholders.</p>
+
+      <div class="partner-grid is-placeholder-grid">
+        <div class="partner-card">Hillcrest<br>Centre</div>
+        <div class="partner-card">Britannia<br>Centre</div>
+        <div class="partner-card">Killarney<br>Centre</div>
+        <div class="partner-card">Champlain<br>Heights</div>
+        <div class="partner-card">Kensington<br>Centre</div>
+        <div class="partner-card">Vancouver<br>Parks</div>
       </div>
     </section>
 
-    <section class="section red center">
+    <section class="section red testimonial-section center">
+      <p class="section-label light-label">Say!</p>
       <h2>Testimonials</h2>
       <h3>What people are saying</h3>
-      <p class="lead small">The Art of Tennis Academy helps children build confidence, skill, and teamwork through sport and creative learning.</p>
+      <blockquote>
+        “The Art of Tennis Academy helps children develop confidence, teamwork, and skill through a fun mix of sport, creativity, and movement.”
+      </blockquote>
     </section>
 
-    <section class="section white center">
+    <section class="section white programs-preview center">
+      <p class="section-label">Program</p>
       <h2>Our Programs</h2>
-      <p class="lead small">Join the fun. We get you playing tennis or developing more advanced techniques to improve your game.</p>
+      <p class="lead small">From first steps on court to competitive development, the academy offers programs for different ages and skill levels.</p>
+
       <div class="program-grid">
-        <a href="mini-tennis.html" class="program-card">Mini Tennis</a>
-        <a href="junior-tennis.html" class="program-card">Junior Tennis</a>
-        <a href="future-stars.html" class="program-card">Future Stars</a>
-        <a href="super-tots.html" class="program-card">Super Tots</a>
-        <a href="summer-camp.html" class="program-card">Tennis + Art Camp</a>
+        <a href="super-tots.html" class="program-card"><span>Super Tots</span><small>Ages 4–5</small></a>
+        <a href="mini-tennis.html" class="program-card"><span>Mini Tennis</span><small>Ages 6–9</small></a>
+        <a href="junior-tennis.html" class="program-card"><span>Junior Tennis</span><small>Ages 10–13</small></a>
+        <a href="future-stars.html" class="program-card"><span>Future Stars</span><small>Skill Based</small></a>
+        <a href="summer-camp.html" class="program-card"><span>Tennis + Art</span><small>Summer Camp</small></a>
       </div>
     </section>
 
     <section class="newsletter section white center">
       <h2>Newsletter</h2>
-      <p>Keep up with upcoming programs and latest news.</p>
+      <p class="lead small">Keep up with upcoming programs and latest news.</p>
       <form class="signup-form">
         <input type="email" placeholder="@email" aria-label="Email address" />
         <button type="submit">Subscribe</button>
       </form>
-      <div class="socials"><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Instagram</a></div>
+      <div class="socials" aria-label="Social links">
+        <a href="#">YouTube</a>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
     </section>
   </main>
 
   <footer id="contact" class="footer red">
-    <div class="footer-logo">The Art of<br><strong>Tennis</strong><br>Academy</div>
+    <div class="footer-logo">
+      <span>The Art of</span>
+      <strong>Tennis</strong>
+      <span>Academy</span>
+    </div>
+
     <div>
       <h3>Location</h3>
       <p>Hillcrest Center<br>Britannia Center<br>Killarney Center<br>Champlain Heights<br>Kensington Center</p>
     </div>
+
     <div>
       <h3>More Info</h3>
       <p><strong>778.919.9364</strong><br>hello@thearoftennis.ca</p>
