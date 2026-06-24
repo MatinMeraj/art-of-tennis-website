@@ -385,3 +385,44 @@ blockquote{
   .footer{text-align:center}
   .action-bar{grid-template-columns:1fr}.action-bar a:first-child{border-right:0;border-bottom:1px solid var(--red)}.court-lines{height:140px}.socials a{width:74px;height:74px;font-size:.72rem}
 }
+
+/* ---- Light polish pass: active nav, placeholders, coming-soon ---- */
+
+/* Active page in navigation */
+.site-nav a[aria-current="page"]{color:#fff}
+.site-nav a[aria-current="page"]::after{transform:scaleX(1)}
+
+/* Intentional placeholder tag (small badge on a placeholder block) */
+.is-placeholder{position:relative}
+.ph-tag{
+  position:absolute;
+  top:10px;
+  left:10px;
+  padding:4px 10px;
+  background:var(--red);
+  color:#fff;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.ph-tag.light{background:#fff;color:var(--red)}
+
+/* Placeholder partner logos: dashed outline reads as "to be replaced" */
+.is-placeholder-grid .partner-card{
+  border-style:dashed;
+  background:var(--soft);
+}
+
+/* Coming soon programs: same look as program-list but clearly inactive */
+.program-list.soon span{
+  display:block;
+  padding:40px 20px;
+  border-bottom:1px solid var(--red);
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:900;
+  text-transform:uppercase;
+  color:var(--red);
+  opacity:.45;
+  cursor:default;
+}
