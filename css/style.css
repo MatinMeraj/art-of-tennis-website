@@ -880,3 +880,184 @@ a.prog-card.banner:hover .ball{background-image:url("data:image/svg+xml,%3Csvg x
 @media (max-width:520px){
   .thanks-logo{width:150px}
 }
+
+/* ========================================
+   About page
+======================================== */
+.about-hero{padding-bottom:20px}
+.about-inner{max-width:var(--max);margin:0 auto}
+.about-block .about-inner > p{color:var(--dark);font-size:1.05rem;line-height:1.7;max-width:760px;margin:0 0 16px}
+.about-block .about-inner > p.section-label{color:var(--red);font-size:.82rem}
+.about-values .about-inner p,
+.about-values .about-inner h2,
+.about-values .about-inner .section-label{color:#fff}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+.value-card{border:2px solid rgba(255,255,255,.55);padding:26px 22px}
+.value-card h3{margin:0 0 12px;color:#fff}
+.value-card p{margin:0;color:rgba(255,255,255,.92);line-height:1.65}
+.about-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+@media (max-width:820px){
+  .value-grid{grid-template-columns:1fr;gap:18px}
+}
+
+/* ---- About page: bordered card grid on white sections ---- */
+.about-grid-light .value-card{border:2px solid var(--red)}
+.about-grid-light .value-card h3{color:var(--red)}
+.about-grid-light .value-card p{color:var(--dark)}
+
+/* ---- Signup button: in-progress state ---- */
+.signup-form button[disabled]{opacity:.65;cursor:default}
+
+/* ========================================
+   Homepage intro overlay
+   ----------------------------------------
+   Only visible when JS has added .js-intro to <html>, so visitors without
+   JS never see (or get stuck behind) the overlay.
+======================================== */
+.intro-overlay{display:none}
+.js-intro .intro-overlay{
+  display:flex;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  background:var(--red);
+  opacity:1;
+  transition:opacity .55s ease;
+}
+.js-intro .intro-logo{
+  width:260px;
+  max-width:62vw;
+  height:auto;
+  opacity:0;
+  transform:scale(.92);
+  animation:intro-logo-in .7s ease forwards;
+}
+.js-intro.intro-done .intro-overlay{opacity:0;pointer-events:none}
+@keyframes intro-logo-in{
+  to{opacity:1;transform:scale(1)}
+}
+@media (prefers-reduced-motion: reduce){
+  .js-intro .intro-overlay{display:none}
+}
+
+/* ========================================
+   Body copy scale
+   ----------------------------------------
+   .lead.small was pinned at 1.08rem while headings scale with the viewport,
+   which left intro paragraphs looking undersized against them. These bump
+   body copy up and give it a comfortable measure.
+======================================== */
+.lead.small{font-size:clamp(1.15rem,1.5vw,1.32rem);line-height:1.65}
+.prog-desc,.win-lead,.schol-lead{
+  font-size:clamp(1.12rem,1.4vw,1.26rem);
+  line-height:1.7;
+  color:var(--muted);
+}
+.about-block .about-inner > p{font-size:clamp(1.1rem,1.3vw,1.2rem)}
+.value-card p{font-size:1.04rem;line-height:1.7}
+
+/* ========================================
+   Yellow accent (from the academy brochure)
+======================================== */
+:root{
+  --yellow:#f5d76e;
+  --yellow-dark:#e8c44c;
+}
+.age-pill{
+  display:inline-block;
+  background:var(--yellow);
+  color:var(--dark);
+  font-weight:900;
+  letter-spacing:.04em;
+  padding:8px 18px;
+  margin:0 8px 10px 0;
+  font-size:.95rem;
+}
+.time-note{
+  display:inline-block;
+  color:var(--dark);
+  font-weight:700;
+  font-size:.98rem;
+  padding:8px 0;
+  margin:0 0 10px;
+}
+.schedule-table{
+  width:100%;
+  max-width:640px;
+  margin:26px auto 0;
+  border-collapse:collapse;
+  text-align:left;
+}
+.schedule-table th,.schedule-table td{
+  border:2px solid var(--line);
+  padding:12px 16px;
+  font-size:1rem;
+}
+.schedule-table th{
+  background:var(--yellow);
+  color:var(--dark);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:.85rem;
+}
+.book-cta{
+  display:block;
+  max-width:640px;
+  margin:28px auto 0;
+  background:var(--yellow);
+  color:var(--dark);
+  font-weight:900;
+  text-align:center;
+  padding:18px 20px;
+  font-size:1.05rem;
+  letter-spacing:.03em;
+  text-decoration:none;
+}
+.book-cta:hover{background:var(--yellow-dark)}
+
+/* ========================================
+   Footer locations: Vancouver expands to its centres
+======================================== */
+.loc-group{margin:0 0 10px}
+.loc-toggle{
+  background:none;
+  border:0;
+  padding:0;
+  color:#fff;
+  font:inherit;
+  font-weight:700;
+  letter-spacing:.04em;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.loc-toggle::after{
+  content:"+";
+  font-weight:900;
+  font-size:1.05em;
+  line-height:1;
+}
+.loc-group.open .loc-toggle::after{content:"\2212"}
+.loc-sublist{
+  list-style:none;
+  margin:8px 0 0;
+  padding:0 0 0 2px;
+  display:none;
+}
+.loc-group.open .loc-sublist{display:block}
+.loc-sublist li{
+  color:rgba(255,255,255,.85);
+  font-size:.92rem;
+  padding:3px 0;
+}
+.loc-soon{
+  color:rgba(255,255,255,.85);
+  font-size:.92rem;
+  display:block;
+  padding:2px 0;
+}
+.loc-soon em{font-style:normal;opacity:.75;font-size:.85em}

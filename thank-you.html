@@ -17,6 +17,7 @@
 
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
+      <a href="about.html">About</a>
       <a href="programs.html">Programs</a>
       <a href="team.html">Team</a>
       <a href="summer-camp.html">Summer Camp</a>
@@ -25,17 +26,21 @@
   </header>
 
   <main>
-    <section class="section white center thanks-section">
+    <!-- The wording below is the newsletter default. js/script.js swaps it
+         based on the ?source= parameter set by whichever form was used, so
+         a camp entrant or scholarship applicant does not get told they have
+         subscribed to a newsletter. Without JS the default copy stands. -->
+    <section class="section white center thanks-section" data-thanks>
       <img src="images/logo-white.png" alt="The Art of Tennis Academy" class="thanks-logo" />
-      <p class="kicker red-text">Newsletter</p>
-      <h1>Thank you for subscribing</h1>
-      <p class="lead small">
+      <p class="kicker red-text" data-thanks-label>Newsletter</p>
+      <h1 data-thanks-heading>Thank you for subscribing</h1>
+      <p class="lead small" data-thanks-body>
         You are on the list. Look out for news about upcoming programs, camps and
         academy updates.
       </p>
       <div class="hero-actions thanks-actions">
         <a class="btn primary" href="index.html">Back to Home</a>
-        <a class="btn ghost" href="programs.html">View Programs</a>
+        <a class="btn ghost" href="programs.html" data-thanks-secondary>View Programs</a>
       </div>
     </section>
   </main>
@@ -48,7 +53,18 @@
       </div>
       <div class="footer-col">
         <h3>Location</h3>
-        <p>Vancouver<br>Barcelona<br>London</p>
+        <div class="loc-group" data-loc-group>
+          <button type="button" class="loc-toggle" data-loc-toggle aria-expanded="false">Vancouver</button>
+          <ul class="loc-sublist">
+            <li>Hillcrest</li>
+            <li>Britannia</li>
+            <li>Killarney</li>
+            <li>Champlain Heights</li>
+            <li>Kensington</li>
+          </ul>
+        </div>
+        <span class="loc-soon">Barcelona <em>coming soon</em></span>
+        <span class="loc-soon">London <em>coming soon</em></span>
       </div>
       <div class="footer-col">
         <h3>More Info</h3>

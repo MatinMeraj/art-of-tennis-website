@@ -33,7 +33,10 @@
  */
 function handleNewsletter(event, form) {
   event.preventDefault();
-  alert('Thanks! Newsletter signup will be connected to our email service soon.');
+  // Fallback only. Every signup form on the site now posts to Mailchimp, so
+  // this should not fire; it exists in case a form is ever added without a
+  // Mailchimp action.
+  alert('Sorry, this form is not connected yet. Please call 778.919.9364.');
   form.reset();
 }
 
@@ -52,9 +55,39 @@ function handleNewsletter(event, form) {
  */
 function handleRegistration(event, form, closeModal) {
   event.preventDefault();
-  alert('Thanks! Your registration request has been received. We will confirm your spot by email.');
+  // Nothing is submitted anywhere yet, so this must not tell the visitor
+  // their registration was received. Carlos has said registration will go
+  // through the community centres; until those URLs exist, point people at
+  // the phone number rather than making a promise the site cannot keep.
+  alert('To register, please call the academy on 778.919.9364 and we will confirm your spot.');
   form.reset();
   closeModal();
+}
+
+
+/* ==================================================================
+   Homepage intro overlay
+   ------------------------------------------------------------------
+   Fades out the logo splash shortly after load. The overlay is only
+   visible when <html> carries .js-intro (set inline in the <head> of
+   index.html), so a visitor without JS never sees it at all. The
+   listeners below are a safety net: whatever happens, the overlay is
+   dismissed rather than left covering the page.
+   ================================================================== */
+
+const introOverlay = document.getElementById('intro-overlay');
+if (introOverlay) {
+  const dismissIntro = () => {
+    document.documentElement.classList.add('intro-done');
+    // Remove it from the document once the fade has finished.
+    setTimeout(() => {
+      if (introOverlay.parentNode) introOverlay.parentNode.removeChild(introOverlay);
+    }, 700);
+  };
+
+  setTimeout(dismissIntro, 1400);
+  introOverlay.addEventListener('click', dismissIntro);
+  window.addEventListener('keydown', dismissIntro, { once: true });
 }
 
 
@@ -86,15 +119,34 @@ document.querySelectorAll('.signup-form').forEach((form) => {
     return;
   }
 
-  // Mailchimp form: let the native POST run into the hidden iframe (so the
-  // page never navigates away), then send the visitor to the thank-you page
-  // once Mailchimp has responded.
+  // Mailchimp form: the native POST runs into a hidden iframe so the page
+  // never navigates away, then the visitor is sent to the thank-you page.
   form.addEventListener('submit', () => {
     const frame = document.querySelector('iframe[name="mc-hidden-iframe"]');
     if (!frame) return;
-    frame.addEventListener('load', () => {
-      window.location.href = 'thank-you.html';
-    }, { once: true });
+
+    // Show progress on the button while the POST is in flight.
+    const button = form.querySelector('button[type="submit"]');
+    if (button) {
+      button.dataset.originalLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Sending...';
+    }
+
+    // The iframe is cross-origin (Mailchimp), so the browser will not let this
+    // page observe its load event. Instead we give the POST a moment to reach
+    // Mailchimp and then move the visitor on. The request continues in the
+    // iframe regardless of what this page does next.
+    // Pass the form's source through so thank-you.html can show wording that
+    // matches what the visitor actually signed up for.
+    const source = form.getAttribute('data-source') || '';
+    const target = source
+      ? 'thank-you.html?source=' + encodeURIComponent(source)
+      : 'thank-you.html';
+
+    setTimeout(() => {
+      window.location.href = target;
+    }, 1500);
   });
 });
 
@@ -131,6 +183,80 @@ if (regModal) {
     regForm.addEventListener('submit', (e) => handleRegistration(e, regForm, close));
   }
 }
+
+
+/* ==================================================================
+   Thank-you page wording
+   ------------------------------------------------------------------
+   One page serves every signup form. The ?source= parameter set by the
+   redirect decides the wording. Anything unrecognised falls back to the
+   newsletter copy already in the markup, so the page is never blank.
+   ================================================================== */
+
+const thanksPage = document.querySelector('[data-thanks]');
+if (thanksPage) {
+  const COPY = {
+    'Newsletter': {
+      label: 'Newsletter',
+      heading: 'Thank you for subscribing',
+      body: 'You are on the list. Look out for news about upcoming programs, camps and academy updates.'
+    },
+    'Win A Free Week': {
+      label: 'Summer Camp',
+      heading: 'You are entered',
+      body: 'Thanks for entering the draw for a free week at our Tennis + Art summer camp. We will be in touch by email if you win.'
+    },
+    'Scholarship': {
+      label: 'Scholarship Program',
+      heading: 'Thanks for your interest',
+      body: 'We have your email address. Someone from the academy will contact you with details about the scholarship program.'
+    }
+  };
+
+  let source = '';
+  try {
+    source = new URLSearchParams(window.location.search).get('source') || '';
+  } catch (e) {}
+
+  const copy = COPY[source];
+  if (copy) {
+    const labelEl = thanksPage.querySelector('[data-thanks-label]');
+    const headEl = thanksPage.querySelector('[data-thanks-heading]');
+    const bodyEl = thanksPage.querySelector('[data-thanks-body]');
+    if (labelEl) labelEl.textContent = copy.label;
+    if (headEl) headEl.textContent = copy.heading;
+    if (bodyEl) bodyEl.textContent = copy.body;
+  }
+
+  // Summer camp entrants are more likely to want the camp page than programs.
+  if (source === 'Win A Free Week') {
+    const secondary = thanksPage.querySelector('[data-thanks-secondary]');
+    if (secondary) {
+      secondary.setAttribute('href', 'summer-camp.html');
+      secondary.textContent = 'Summer Camp';
+    }
+  }
+}
+
+
+/* ==================================================================
+   Footer location groups
+   ------------------------------------------------------------------
+   Vancouver expands to list the community centres the academy runs
+   programs at. Closed by default; the sublist is only hidden by CSS,
+   so without JS it simply stays visible rather than becoming
+   unreachable.
+   ================================================================== */
+
+document.querySelectorAll('[data-loc-group]').forEach((group) => {
+  const toggle = group.querySelector('[data-loc-toggle]');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const open = group.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});
 
 
 /* ==================================================================

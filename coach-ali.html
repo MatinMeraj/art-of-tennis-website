@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ali | The Art of Tennis Academy</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header class="site-header"><a class="logo" href="index.html" aria-label="The Art of Tennis Academy home"><img src="images/logo-white.png" alt="The Art of Tennis Academy" class="logo-img" /></a><button class="nav-toggle" aria-label="Open navigation">☰</button><nav class="site-nav"><a href="index.html">Home</a><a href="programs.html">Programs</a><a href="team.html" aria-current="page">Team</a><a href="summer-camp.html">Summer Camp</a><a href="#contact">Contact</a></nav></header>
+<header class="site-header"><a class="logo" href="index.html" aria-label="The Art of Tennis Academy home"><img src="images/logo-white.png" alt="The Art of Tennis Academy" class="logo-img" /></a><button class="nav-toggle" aria-label="Open navigation">☰</button><nav class="site-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="team.html" aria-current="page">Team</a><a href="summer-camp.html">Summer Camp</a><a href="#contact">Contact</a></nav></header>
 <main><section class="coach-hero"><div class="coach-hero-inner"><div class="coach-hero-photo coach-hero-placeholder"><span>A</span></div><div class="coach-hero-info"><p class="coach-role-label">Coach</p><h1>Ali</h1><p>A dedicated member of The Art of Tennis Academy coaching team. Full bio coming soon.</p><a href="team.html" class="btn ghost coach-back">&larr; Back to Team</a></div></div></section></main>
 <footer id="contact" class="footer red">
     <div class="footer-tab" aria-hidden="true"></div>
@@ -9,10 +9,21 @@
       </div>
       <div class="footer-col">
         <h3>Location</h3>
-        <!-- TODO: Carlos to confirm whether Barcelona and London are active
-             locations, future locations, or brand presence. Previously listed:
-             Hillcrest, Britannia, Killarney, Champlain Heights, Kensington. -->
-        <p>Vancouver<br>Barcelona<br>London</p>
+        <!-- TODO: Carlos still to confirm the status of Barcelona and London.
+             They are shown as "coming soon" until he says otherwise, since
+             listing them as active would claim locations that may not exist. -->
+        <div class="loc-group" data-loc-group>
+          <button type="button" class="loc-toggle" data-loc-toggle aria-expanded="false">Vancouver</button>
+          <ul class="loc-sublist">
+            <li>Hillcrest</li>
+            <li>Britannia</li>
+            <li>Killarney</li>
+            <li>Champlain Heights</li>
+            <li>Kensington</li>
+          </ul>
+        </div>
+        <span class="loc-soon">Barcelona <em>coming soon</em></span>
+        <span class="loc-soon">London <em>coming soon</em></span>
       </div>
       <div class="footer-col">
         <h3>More Info</h3>

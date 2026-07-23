@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Programs | The Art of Tennis Academy</title><link rel="stylesheet" href="css/style.css"></head><body>
-<header class="site-header"><a class="logo" href="index.html" aria-label="The Art of Tennis Academy home"><img src="images/logo-white.png" alt="The Art of Tennis Academy" class="logo-img" /></a><button class="nav-toggle" aria-label="Open navigation">☰</button><nav class="site-nav"><a href="index.html">Home</a><a href="programs.html" aria-current="page">Programs</a><a href="team.html">Team</a><a href="summer-camp.html">Summer Camp</a><a href="#contact">Contact</a></nav></header>
+<header class="site-header"><a class="logo" href="index.html" aria-label="The Art of Tennis Academy home"><img src="images/logo-white.png" alt="The Art of Tennis Academy" class="logo-img" /></a><button class="nav-toggle" aria-label="Open navigation">☰</button><nav class="site-nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html" aria-current="page">Programs</a><a href="team.html">Team</a><a href="summer-camp.html">Summer Camp</a><a href="#contact">Contact</a></nav></header>
 <main><section class="section white center"><h1>Our Programs</h1><p class="lead small">Join the fun. We simply get you playing tennis, or develop more advanced technics to better your game.</p><div class="programs-grid">
   <a href="super-tots.html" class="prog-card"><div class="ball"></div><span class="prog-name">Super Tots</span><span class="prog-sub">Ages 4 to 5</span></a>
   <a href="mini-tennis.html" class="prog-card"><div class="ball"></div><span class="prog-name">Mini Tennis</span><span class="prog-sub">Ages 6 to 9</span></a>
@@ -20,10 +20,21 @@
       </div>
       <div class="footer-col">
         <h3>Location</h3>
-        <!-- TODO: Carlos to confirm whether Barcelona and London are active
-             locations, future locations, or brand presence. Previously listed:
-             Hillcrest, Britannia, Killarney, Champlain Heights, Kensington. -->
-        <p>Vancouver<br>Barcelona<br>London</p>
+        <!-- TODO: Carlos still to confirm the status of Barcelona and London.
+             They are shown as "coming soon" until he says otherwise, since
+             listing them as active would claim locations that may not exist. -->
+        <div class="loc-group" data-loc-group>
+          <button type="button" class="loc-toggle" data-loc-toggle aria-expanded="false">Vancouver</button>
+          <ul class="loc-sublist">
+            <li>Hillcrest</li>
+            <li>Britannia</li>
+            <li>Killarney</li>
+            <li>Champlain Heights</li>
+            <li>Kensington</li>
+          </ul>
+        </div>
+        <span class="loc-soon">Barcelona <em>coming soon</em></span>
+        <span class="loc-soon">London <em>coming soon</em></span>
       </div>
       <div class="footer-col">
         <h3>More Info</h3>

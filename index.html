@@ -5,8 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Art of Tennis Academy</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script>
+    /* Enable the intro overlay only when JS is available and the visitor has
+       not asked for reduced motion. Inline and in <head> so the class is set
+       before first paint, which avoids a flash of the page behind it. */
+    (function () {
+      try {
+        var reduce = window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) document.documentElement.className += ' js-intro';
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+  <!-- Intro overlay: shown briefly on first load of the homepage, then faded
+       out by js/script.js. Hidden entirely without JS (see CSS: the overlay
+       only becomes visible once .js-intro is on <html>), so it can never
+       trap a visitor behind a blank screen. -->
+  <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+    <img src="images/logo-white.png" alt="" class="intro-logo" />
+  </div>
+
   <header class="site-header">
     <a class="logo" href="index.html" aria-label="The Art of Tennis Academy home">
       <img src="images/logo-white.png" alt="The Art of Tennis Academy" class="logo-img" />
@@ -16,6 +36,7 @@
 
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
       <a href="programs.html">Programs</a>
       <a href="team.html">Team</a>
       <a href="summer-camp.html">Summer Camp</a>
@@ -130,7 +151,7 @@
       <h2>Newsletter</h2>
       <p class="lead small">Keep up with upcoming programs and latest news.</p>
       <form
-        class="signup-form"
+        class="signup-form" data-source="Newsletter"
         action="https://theartoftennis.us5.list-manage.com/subscribe/post?u=d4935c9e3a66f18ceada0a693&amp;id=e459e8c152&amp;f_id=0085b9edf0"
         method="post"
         target="mc-hidden-iframe"
@@ -143,6 +164,9 @@
           autocomplete="email"
           required
         />
+
+        <input type="hidden" name="SOURCE" value="Newsletter" />
+        <input type="hidden" name="MMERGE7" value="Newsletter" />
 
         <div class="mailchimp-honeypot" aria-hidden="true">
           <input
@@ -174,10 +198,21 @@
       </div>
       <div class="footer-col">
         <h3>Location</h3>
-        <!-- TODO: Carlos to confirm whether Barcelona and London are active
-             locations, future locations, or brand presence. Previously listed:
-             Hillcrest, Britannia, Killarney, Champlain Heights, Kensington. -->
-        <p>Vancouver<br>Barcelona<br>London</p>
+        <!-- TODO: Carlos still to confirm the status of Barcelona and London.
+             They are shown as "coming soon" until he says otherwise, since
+             listing them as active would claim locations that may not exist. -->
+        <div class="loc-group" data-loc-group>
+          <button type="button" class="loc-toggle" data-loc-toggle aria-expanded="false">Vancouver</button>
+          <ul class="loc-sublist">
+            <li>Hillcrest</li>
+            <li>Britannia</li>
+            <li>Killarney</li>
+            <li>Champlain Heights</li>
+            <li>Kensington</li>
+          </ul>
+        </div>
+        <span class="loc-soon">Barcelona <em>coming soon</em></span>
+        <span class="loc-soon">London <em>coming soon</em></span>
       </div>
       <div class="footer-col">
         <h3>More Info</h3>
