@@ -829,3 +829,12 @@ a.prog-card.banner:hover .ball{background-image:url("data:image/svg+xml,%3Csvg x
   .coach-hero-inner{grid-template-columns:1fr;gap:32px}
   .coach-hero-photo{max-width:320px;margin:0 auto}
 }
+
+/* ---- Mailchimp spam-protection field ---- */
+.mailchimp-honeypot{
+  position:absolute;
+  left:-5000px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
