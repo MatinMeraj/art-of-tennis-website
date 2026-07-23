@@ -838,3 +838,28 @@ a.prog-card.banner:hover .ball{background-image:url("data:image/svg+xml,%3Csvg x
   height:1px;
   overflow:hidden;
 }
+
+/* ========================================
+   Testimonials Slider
+======================================== */
+.testimonial-slider{max-width:820px;margin:24px auto 0}
+.testimonial-track{list-style:none;margin:0;padding:0;display:grid}
+.testimonial-slide{grid-area:1 / 1;opacity:0;visibility:hidden;transition:opacity .35s ease}
+.testimonial-slide.is-active{opacity:1;visibility:visible}
+.testimonial-slide blockquote{margin:0;color:#fff}
+.testimonial-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px}
+.testimonial-btn{width:44px;height:44px;border:2px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-size:1.1rem;line-height:1;cursor:pointer;transition:background .18s ease,color .18s ease}
+.testimonial-btn:hover{background:#fff;color:var(--red)}
+.testimonial-dots{display:flex;gap:10px}
+.testimonial-dot{width:12px;height:12px;padding:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);background:transparent;cursor:pointer;transition:background .18s ease}
+.testimonial-dot.is-active{background:#fff}
+
+/* ========================================
+   Footer copyright bar
+======================================== */
+.footer-bottom{max-width:var(--max);margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.25);text-align:center}
+.footer-bottom p{margin:0;color:rgba(255,255,255,.85);font-size:.85rem;letter-spacing:.03em}
+
+@media (prefers-reduced-motion: reduce){
+  .testimonial-slide{transition-duration:.001ms}
+}

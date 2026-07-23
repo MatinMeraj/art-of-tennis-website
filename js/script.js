@@ -140,3 +140,90 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     }
   });
 });
+
+
+/* ==================================================================
+   Current year (footer copyright)
+   ================================================================== */
+
+document.querySelectorAll('[data-current-year]').forEach((el) => {
+  el.textContent = String(new Date().getFullYear());
+});
+
+
+/* ==================================================================
+   Testimonials slider
+   ------------------------------------------------------------------
+   Vanilla, no dependencies. Initialises only where the markup exists,
+   so pages without a slider are unaffected. Autoplay ~6s, pauses on
+   hover and keyboard focus, arrow-key support, honours reduced motion.
+   Without JS the first slide stays visible via CSS .is-active.
+   ================================================================== */
+
+document.querySelectorAll('[data-testimonial-slider]').forEach((slider) => {
+  const slides = Array.from(slider.querySelectorAll('[data-slide]'));
+  if (slides.length === 0) return;
+
+  const dotsWrap = slider.querySelector('.testimonial-dots');
+  const prevBtn = slider.querySelector('[data-slider-prev]');
+  const nextBtn = slider.querySelector('[data-slider-next]');
+
+  const AUTOPLAY_MS = 6000;
+  const reduceMotion = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
+  let index = slides.findIndex((s) => s.classList.contains('is-active'));
+  if (index < 0) index = 0;
+  let timer = null;
+
+  const dots = [];
+  if (dotsWrap) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'testimonial-dot';
+      dot.setAttribute('aria-label', 'Show testimonial ' + (i + 1) + ' of ' + slides.length);
+      dot.addEventListener('click', () => { show(i); restart(); });
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    });
+  }
+
+  function show(next) {
+    index = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === index);
+    });
+  }
+
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function start() {
+    if (reduceMotion || slides.length < 2) return;
+    stop();
+    timer = setInterval(() => show(index + 1), AUTOPLAY_MS);
+  }
+  function restart() { stop(); start(); }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => { show(index - 1); restart(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { show(index + 1); restart(); });
+
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  slider.addEventListener('focusin', stop);
+  slider.addEventListener('focusout', (e) => {
+    if (!slider.contains(e.relatedTarget)) start();
+  });
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); show(index - 1); restart(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); restart(); }
+  });
+
+  show(index);
+  start();
+});

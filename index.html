@@ -73,9 +73,43 @@
     <section class="section red testimonial-section center">
       <h2>Testimonials</h2>
       <h3>What people are saying</h3>
-      <blockquote>
-        “The Art of Tennis Academy helps children develop confidence, teamwork, and skill through a fun mix of sport, creativity, and movement.”
-      </blockquote>
+
+      <!-- Testimonials slider.
+           TODO: the three quotations below are PLACEHOLDER copy for layout only.
+           They are NOT real reviews. Replace each <blockquote> with quotations
+           Carlos has collected and approved. -->
+      <div class="testimonial-slider" data-testimonial-slider>
+        <ul class="testimonial-track">
+          <li class="testimonial-slide is-active" data-slide>
+            <blockquote>
+              &ldquo;The Art of Tennis Academy helps children develop confidence, teamwork,
+              and skill through a fun mix of sport, creativity, and movement.&rdquo;
+            </blockquote>
+          </li>
+          <li class="testimonial-slide" data-slide>
+            <blockquote>
+              &ldquo;The coaches keep every session active and encouraging, and the kids
+              genuinely look forward to going each week.&rdquo;
+            </blockquote>
+          </li>
+          <li class="testimonial-slide" data-slide>
+            <blockquote>
+              &ldquo;A welcoming program that balances real tennis fundamentals with
+              creativity and play.&rdquo;
+            </blockquote>
+          </li>
+        </ul>
+
+        <div class="testimonial-controls">
+          <button class="testimonial-btn" type="button" data-slider-prev aria-label="Previous testimonial">
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <div class="testimonial-dots"></div>
+          <button class="testimonial-btn" type="button" data-slider-next aria-label="Next testimonial">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+      </div>
     </section>
 
     <section class="section white programs-preview center">
@@ -137,13 +171,20 @@
       </div>
       <div class="footer-col">
         <h3>Location</h3>
-        <p>Hillcrest Center<br>Britannia Center<br>Killarney Center<br>Champlain Heights<br>Kensington Center</p>
+        <!-- TODO: Carlos to confirm whether Barcelona and London are active
+             locations, future locations, or brand presence. Previously listed:
+             Hillcrest, Britannia, Killarney, Champlain Heights, Kensington. -->
+        <p>Vancouver<br>Barcelona<br>London</p>
       </div>
       <div class="footer-col">
         <h3>More Info</h3>
         <p class="phone">778.919.9364</p>
         <p class="say">Say!<br><span>hello@theartoftennis.ca</span></p>
       </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span data-current-year>2026</span> The Art of Tennis Academy. All rights reserved.</p>
     </div>
   </footer>
 
