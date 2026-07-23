@@ -83,7 +83,19 @@ document.querySelectorAll('.signup-form').forEach((form) => {
 
   if (!isMailchimpForm) {
     form.addEventListener('submit', (event) => handleNewsletter(event, form));
+    return;
   }
+
+  // Mailchimp form: let the native POST run into the hidden iframe (so the
+  // page never navigates away), then send the visitor to the thank-you page
+  // once Mailchimp has responded.
+  form.addEventListener('submit', () => {
+    const frame = document.querySelector('iframe[name="mc-hidden-iframe"]');
+    if (!frame) return;
+    frame.addEventListener('load', () => {
+      window.location.href = 'thank-you.html';
+    }, { once: true });
+  });
 });
 
 
